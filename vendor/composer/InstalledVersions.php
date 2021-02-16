@@ -24,12 +24,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-stable',
+    'version' => 'dev-stable',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'a36ea82ed491602b2572e601985e1e9e1bbe2826',
     'name' => 'springdevs/sms',
   ),
   'versions' => 
@@ -107,12 +107,12 @@ private static $installed = array (
     ),
     'springdevs/sms' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-stable',
+      'version' => 'dev-stable',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'a36ea82ed491602b2572e601985e1e9e1bbe2826',
     ),
     'twilio/sdk' => 
     array (
