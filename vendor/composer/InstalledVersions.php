@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a36ea82ed491602b2572e601985e1e9e1bbe2826',
+    'reference' => '57b0ac3ec81d02e31669a93452e086558b711a2c',
     'name' => 'springdevs/sms',
   ),
   'versions' => 
@@ -112,7 +112,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a36ea82ed491602b2572e601985e1e9e1bbe2826',
+      'reference' => '57b0ac3ec81d02e31669a93452e086558b711a2c',
     ),
     'twilio/sdk' => 
     array (
