@@ -1,0 +1,25 @@
+{
+    "name": "springdevs/sms",
+    "description": "Fully replace woocommerce email",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "SpringDevs",
+            "email": "contact@springdevs.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "twilio/sdk": "dev-main",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SpringDevs\\SMS\\": "includes/"
+        },
+        "files": [
+            "includes/functions.php"
+        ]
+    }
+}
