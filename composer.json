@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "require": {
         "twilio/sdk": "dev-main",
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^7.0",
+        "giggsey/libphonenumber-for-php": "8.x-dev"
     },
     "autoload": {
         "psr-4": {

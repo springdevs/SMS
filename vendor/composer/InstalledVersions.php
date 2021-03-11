@@ -29,11 +29,30 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '57b0ac3ec81d02e31669a93452e086558b711a2c',
+    'reference' => 'c309731b8b09479fb1cb71638a856b1f70075cf2',
     'name' => 'springdevs/sms',
   ),
   'versions' => 
   array (
+    'giggsey/libphonenumber-for-php' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+        0 => '8.x-dev',
+      ),
+      'reference' => 'f3c196dcb3e76e456783a38bab87d99b4d727918',
+    ),
+    'giggsey/locale' => 
+    array (
+      'pretty_version' => '1.9',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b07f1eace8072ccc61445ad8fbd493ff9d783043',
+    ),
     'guzzlehttp/guzzle' => 
     array (
       'pretty_version' => '7.2.0',
@@ -112,7 +131,17 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '57b0ac3ec81d02e31669a93452e086558b711a2c',
+      'reference' => 'c309731b8b09479fb1cb71638a856b1f70075cf2',
+    ),
+    'symfony/polyfill-mbstring' => 
+    array (
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+        0 => '1.22.x-dev',
+      ),
+      'reference' => '5232de97ee3b75b0360528dae24e73db49566ab1',
     ),
     'twilio/sdk' => 
     array (
