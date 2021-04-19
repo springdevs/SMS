@@ -11,11 +11,11 @@
  */
 
 return array (
-  21112 => 'Sudatel Group',
-  21191 => 'Zain',
-  21192 => 'MTN',
-  21195 => 'Network of the World',
-  21197 => 'Gemtel',
-  21198 => 'Digitel',
-  21199 => 'MTN',
+  96121 => 'Beirut',
+  96124 => 'Metn',
+  96125 => 'Chouf',
+  96126 => 'North Lebanon',
+  96127 => 'South Lebanon',
+  96128 => 'Bekaa',
+  96129 => 'Jbeil & Keserwan',
 );

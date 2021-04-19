@@ -2,8 +2,6 @@
 
 namespace SpringDevs\SMS\Admin;
 
-use GuzzleHttp\Client;
-
 /**
  * Form Handler
  *
@@ -37,42 +35,44 @@ class Forms
             update_option("sms_service", $sms_service);
             update_option('admin_phone_numbers', $admin_phone_numbers);
             $url = 'https://api.twilio.com/2010-04-01/Accounts/' . $twilio_sid . '/IncomingPhoneNumbers.json?Beta=false';
-            $client = new Client();
-            $response = $client->get($url, [
-                'auth' => [
-                    $twilio_sid,
-                    $twilio_token
-                ],
-                'http_errors' => false
-            ]);
-            $res_data = json_decode($response->getBody());
-            $twilio_phone_numbers = [];
-            if (isset($res_data->incoming_phone_numbers)) {
-                foreach ($res_data->incoming_phone_numbers as $incoming_phone_number) {
-                    array_push($twilio_phone_numbers, $incoming_phone_number->phone_number);
-                }
-            }
-            if (empty($twilio_phone_numbers)) {
+
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_USERPWD, $twilio_sid . ':' . $twilio_token);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $response = curl_exec($ch);
+            $response = json_decode($response);
+
+            if (isset($response->status) && $response->status == 401) {
                 add_action('admin_notices', function (): void {
                     $class = 'notice notice-error';
                     $message = __('Wrong API Credentials !!', 'sdevs_wea');
                     printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
                 });
-            } elseif (!in_array($twilio_sending_phone, $twilio_phone_numbers)) {
-                add_action('admin_notices', function (): void {
-                    $class = 'notice notice-error';
-                    $message = __('Sender phone number not found !!', 'sdevs_wea');
-                    printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
-                });
             } else {
-                update_option('twilio_sid', $twilio_sid);
-                update_option('twilio_token', $twilio_token);
-                update_option('twilio_sending_phone_number', $twilio_sending_phone);
-                add_action('admin_notices', function (): void {
-                    $class = 'notice notice-success';
-                    $message = __('Settings saved !!', 'sdevs_wea');
-                    printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
-                });
+                $incoming_phone_numbers = [];
+                if (isset($response->incoming_phone_numbers) && is_array($response->incoming_phone_numbers)) {
+                    foreach ($response->incoming_phone_numbers as $r_incoming_phone_number) {
+                        array_push($incoming_phone_numbers, $r_incoming_phone_number->phone_number);
+                    }
+                }
+                if (!in_array($twilio_sending_phone, $incoming_phone_numbers)) {
+                    add_action('admin_notices', function (): void {
+                        $class = 'notice notice-error';
+                        $message = __('Sender phone number not found !!', 'sdevs_wea');
+                        printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
+                    });
+                } else {
+                    update_option('twilio_sid', $twilio_sid);
+                    update_option('twilio_token', $twilio_token);
+                    update_option('twilio_sending_phone_number', $twilio_sending_phone);
+                    add_action('admin_notices', function (): void {
+                        $class = 'notice notice-success';
+                        $message = __('Settings saved !!', 'sdevs_wea');
+                        printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
+                    });
+                }
             }
         }
     }
