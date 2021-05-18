@@ -53,6 +53,11 @@ class Menu
     {
         // wp_enqueue_style( 'admin' );
         wp_enqueue_script('sms_admin_js');
+        wp_enqueue_script('sms_app_js');
+        wp_localize_script('sms_app_js', 'sms_helper_obj', [
+            'nonce' => wp_create_nonce('sdevs-sms-setup-formnonce'),
+            'ajax_url' => admin_url('admin-ajax.php')
+        ]);
     }
 
     /**

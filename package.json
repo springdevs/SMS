@@ -1,0 +1,23 @@
+{
+  "name": "sms",
+  "version": "1.0.0",
+  "description": "Fully replace woocommerce email",
+  "main": "webpack.mix.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "laravel-mix": "^6.0.19",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "qs": "^6.7.0",
+    "vue": "^2.6.12",
+    "vue-toast-notification": "^0.6.1"
+  }
+}

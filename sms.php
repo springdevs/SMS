@@ -22,7 +22,7 @@ final class Sdevs_sms_main
      *
      * @var string
      */
-    const version = '1.0.0';
+    const version = '1.0.1';
 
     /**
      * Holds various class instances
@@ -155,7 +155,7 @@ final class Sdevs_sms_main
     public function init_classes()
     {
         if ($this->is_request('ajax')) {
-            // $this->container['ajax'] =  new SpringDevs\SMS\Ajax();
+            $this->container['ajax'] =  new SpringDevs\SMS\Ajax();
         }
 
         $this->container['api']    = new SpringDevs\SMS\Api();

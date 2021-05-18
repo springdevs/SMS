@@ -3,6 +3,7 @@
 namespace SpringDevs\SMS;
 
 use SpringDevs\SMS\Illuminate\Order;
+use SpringDevs\SMS\Illuminate\Providers;
 
 /**
  * Illuminate class
@@ -17,5 +18,6 @@ class Illuminate
     public function __construct()
     {
         new Order;
+        new Providers;
     }
 }

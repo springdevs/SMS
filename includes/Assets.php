@@ -78,6 +78,10 @@ class Assets
                 "src" => $plugin_js_assets_path . 'admin.js',
                 "deps" => ['jquery'],
                 "in_footer" => true
+            ],
+            "sms_app_js" => [
+                "src" => $plugin_js_assets_path . 'app.js',
+                "in_footer" => true
             ]
         ];
 
