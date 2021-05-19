@@ -11,6 +11,28 @@ class Providers
     public function __construct()
     {
         add_action('sdevs_send_sms_twilio', [$this, 'send_sms_twilio'], 10, 2);
+        add_action('sdevs_send_sms_elitbuzz', [$this, 'send_sms_elitbuzz'], 10, 2);
+    }
+
+    public function send_sms_elitbuzz($phone_number, $content)
+    {
+        $url = "https://880sms.com/smsapi";
+        $data = [
+            "api_key" => get_option("elitbuzz_apikey", null),
+            "type" => "text/unicode",
+            "contacts" => $phone_number,
+            "senderid" => get_option("elitbuzz_sender_id", null),
+            "msg" => $content,
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return $response;
     }
 
     public function send_sms_twilio($phone_number, $content)

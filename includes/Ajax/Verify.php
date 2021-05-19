@@ -14,6 +14,24 @@ class Verify
     public function __construct()
     {
         add_filter('sms_verify_api_twilio', [$this, 'twilio_api_verify'], 10, 2);
+        add_filter('sms_verify_api_elitbuzz', [$this, 'elitbuzz_api_verify'], 10, 2);
+    }
+
+    public function elitbuzz_api_verify(array $result, array $post_data)
+    {
+        $url = 'https://880sms.com/miscapi/' . $post_data['elitbuzz_apikey'] . '/getBalance';
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+
+        if ($response === 'Error: 1003') {
+            return ['result' => false, 'msg' => 'Wrong API Credentials !!'];
+        }
+
+        return $result;
     }
 
     public function twilio_api_verify(array $result, array $post_data)

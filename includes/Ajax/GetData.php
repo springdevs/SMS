@@ -23,7 +23,11 @@ class GetData
                 [
                     'name' => 'twilio',
                     'label' => __('Twilio', 'sdevs_wea')
-                ]
+                ],
+                [
+                    'name' => 'elitbuzz',
+                    'label' => __('ElitBuzz', 'sdevs_wea')
+                ],
             ];
             $fields = [
                 'twilio' => [
@@ -63,6 +67,36 @@ class GetData
                             'required' => true,
                         ],
                     ]
+                ],
+                'elitbuzz' => [
+                    'settings' => [
+                        [
+                            'name' => 'elitbuzz_apikey',
+                            'label' => __('API Key', 'sdevs_wea'),
+                            'type' => 'text',
+                            'value' => get_option('elitbuzz_apikey', null),
+                            'placeholder' => null,
+                            'required' => true,
+                        ],
+                    ],
+                    'sending' => [
+                        [
+                            'name' => 'elitbuzz_sender_id',
+                            'label' => __('Sender ID', 'sdevs_wea'),
+                            'type' => 'text',
+                            'value' => get_option('elitbuzz_sender_id', null),
+                            'placeholder' => null,
+                            'required' => true,
+                        ],
+                        [
+                            'name' => 'admin_phone_numbers',
+                            'label' => __('Admin phone', 'sdevs_wea'),
+                            'type' => 'text',
+                            'value' => get_option('admin_phone_numbers', null),
+                            'placeholder' => __('type multiple numbers with coma', 'sdevs_wea'),
+                            'required' => true,
+                        ],
+                    ],
                 ]
             ];
 
