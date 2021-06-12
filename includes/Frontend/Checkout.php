@@ -21,7 +21,7 @@ class Checkout
     {
         if ("ask_checkout" === get_option("user_sms_notification", "all")) {
             $fields['billing']['sms_order_notification'] = [
-                'label'        => get_option("checkout_checkbox_field_txt", __('I want to be notified about any changes in the order via SMS', 'sdevs_wea')),
+                'label'        => get_option("checkout_checkbox_field_txt", __('I want to be notified about any changes in the order via SMS', 'sdevs_sms')),
                 'type'         => 'checkbox',
                 'required'     => false,
                 'class'        => ['form-row-wide'],

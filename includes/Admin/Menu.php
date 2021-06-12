@@ -25,10 +25,10 @@ class Menu
      */
     public function admin_menu()
     {
-        add_menu_page(__('SMS', 'sdevs_wea'), __('SMS', 'sdevs_wea'), 'manage_options', 'sdevs-sms-setup', false, 'dashicons-email-alt2', 50);
-        $setup_hook = add_submenu_page('sdevs-sms-setup', __('Setup', 'sdevs_wea'), __('Setup', 'sdevs_wea'), 'manage_options', 'sdevs-sms-setup', [$this, 'setup_page']);
-        $woocommerce_hook = add_submenu_page('sdevs-sms-setup', __('WooCommerce', 'sdevs_wea'), __('WooCommerce', 'sdevs_wea'), 'manage_options', 'sdevs-sms-woocommerce', [$this, 'woocommerce_page']);
-        $template_hook = add_submenu_page('sdevs-sms-setup', __('Template', 'sdevs_wea'), __('Template', 'sdevs_wea'), 'manage_options', 'sdevs-sms-template', [$this, 'template_page']);
+        add_menu_page(__('SMS', 'sdevs_sms'), __('SMS', 'sdevs_sms'), 'manage_options', 'sdevs-sms-setup', false, 'dashicons-email-alt2', 50);
+        $setup_hook = add_submenu_page('sdevs-sms-setup', __('Setup', 'sdevs_sms'), __('Setup', 'sdevs_sms'), 'manage_options', 'sdevs-sms-setup', [$this, 'setup_page']);
+        $woocommerce_hook = add_submenu_page('sdevs-sms-setup', __('WooCommerce', 'sdevs_sms'), __('WooCommerce', 'sdevs_sms'), 'manage_options', 'sdevs-sms-woocommerce', [$this, 'woocommerce_page']);
+        $template_hook = add_submenu_page('sdevs-sms-setup', __('Template', 'sdevs_sms'), __('Template', 'sdevs_sms'), 'manage_options', 'sdevs-sms-template', [$this, 'template_page']);
         add_action('load-' . $setup_hook, [$this, 'init_hooks']);
         add_action('load-' . $woocommerce_hook, [$this, 'init_hooks']);
         add_action('load-' . $template_hook, [$this, 'init_hooks']);

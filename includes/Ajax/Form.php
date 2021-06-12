@@ -24,7 +24,7 @@ class Form
             if (!$verify['result']) {
                 return wp_send_json([
                     "type" => "error",
-                    "msg" => __($verify['msg'], "sdevs_wea"),
+                    "msg" => __($verify['msg'], "sdevs_sms"),
                 ]);
             }
 
@@ -34,7 +34,7 @@ class Form
 
             wp_send_json([
                 "type" => "success",
-                "msg" => __("Saved SuccessFully", "sdevs_wea"),
+                "msg" => __("Saved SuccessFully", "sdevs_sms"),
             ]);
         }
     }
