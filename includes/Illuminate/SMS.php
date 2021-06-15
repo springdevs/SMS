@@ -8,6 +8,14 @@ namespace SpringDevs\SMS\Illuminate;
  */
 class SMS
 {
+
+    public static function formate_number($phone_number, $country_code)
+    {
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        $swissNumberProto = $phoneUtil->parse($phone_number, $country_code);
+        return $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::E164);
+    }
+
     public static function new_order_sms_admin($order_id)
     {
         $order_sms_template = get_option("admin_new_order_sms_template");
@@ -27,12 +35,8 @@ class SMS
         $content = Template::filter_content($new_order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function pending_order_sms($order_id)
@@ -41,12 +45,8 @@ class SMS
         $content = Template::filter_content($pending_order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function processing_order_sms($order_id)
@@ -55,12 +55,8 @@ class SMS
         $content = Template::filter_content($pending_order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function onhold_order_sms($order_id)
@@ -69,12 +65,8 @@ class SMS
         $content = Template::filter_content($onhold_order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function completed_order_sms($order_id)
@@ -83,12 +75,8 @@ class SMS
         $content = Template::filter_content($order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function cancelled_order_sms($order_id)
@@ -97,12 +85,8 @@ class SMS
         $content = Template::filter_content($order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function failed_order_sms($order_id)
@@ -111,12 +95,8 @@ class SMS
         $content = Template::filter_content($order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 
     public static function refunded_order_sms($order_id)
@@ -125,11 +105,7 @@ class SMS
         $content = Template::filter_content($order_sms_template, $order_id);
         $order = wc_get_order($order_id);
 
-        $phone_number = $order->get_billing_phone();
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-        $swissNumberProto = $phoneUtil->parse($phone_number, $order->get_billing_country());
-        $formatted_phone_number = $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-
-        sdevs_send_sms($formatted_phone_number, $content);
+        $phone_number = SMS::formate_number($order->get_billing_phone(), $order->get_billing_country());
+        sdevs_send_sms($phone_number, $content);
     }
 }
